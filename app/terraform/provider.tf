@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket = "helloworld-tfstate123"
+    bucket = "mys3-privatelink"
     key    = "terraform.tfstate"
     region = "us-east-2"
   }
