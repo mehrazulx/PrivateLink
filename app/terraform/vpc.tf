@@ -17,13 +17,26 @@ provider "aws" {
 
 
 # VPC___________________________________________________________________________________________________
-resource "aws_vpc" "existing" {
+resource "aws_vpc" "Private" {
   cidr_block = "10.1.0.0/16"
   enable_dns_support = true
   enable_dns_hostnames = true
 
   tags = {
     Name = "VPC-Private"
+  }
+}
+
+
+
+#VPC aws_vpc.PublicVPC.id
+resource "aws_vpc" "Public" {
+  cidr_block = "10.0.0.0/16"
+  enable_dns_support = true
+  enable_dns_hostnames = true
+
+  tags = {
+    Name = "VPC-Public"
   }
 }
 

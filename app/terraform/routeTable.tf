@@ -1,18 +1,32 @@
 # Private route table______________________________________________________________________________________
 resource "aws_route_table" "private" {
-  vpc_id = aws_vpc.existing.id
+  vpc_id = aws_vpc.Private.id
 
   tags = {
-    Name = "RT2"
+    Name = "VPC-Private-RT"
   }
 }
 
-#public route table
-resource "aws_route_table" "public" {
-  vpc_id = aws_vpc.existing.id
+
+# Private route table______________________________________________________________________________________
+resource "aws_route_table" "private_public" {
+  vpc_id = aws_vpc.Private.id
 
   tags = {
-    Name = "publicRT"
+    Name = "VPC-Private-public-RT"
+  }
+}
+
+
+
+
+
+#public route table
+resource "aws_route_table" "public" {
+  vpc_id = aws_vpc.Public.id
+
+  tags = {
+    Name = "VPC-public-RT"
   }
 }
 
@@ -24,6 +38,13 @@ resource "aws_route_table_association" "private" {
   route_table_id = aws_route_table.private.id
 }
 
+
+
+# Associate private/public subnet with  route table________________________________________________________________________________
+resource "aws_route_table_association" "private_public" {
+  subnet_id      = aws_subnet.existing_private_public.id
+  route_table_id = aws_route_table.private_public.id
+}
 
 
 

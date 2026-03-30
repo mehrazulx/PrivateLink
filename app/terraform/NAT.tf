@@ -5,7 +5,7 @@ resource "aws_eip" "nat_eip" {
 
 resource "aws_nat_gateway" "nat" {
   allocation_id = aws_eip.nat_eip.id
-  subnet_id     = aws_subnet.existing_public.id
+  subnet_id     = aws_subnet.existing_private_public.id
 
   tags = {
     Name = "NAT-Gateway"
@@ -21,3 +21,5 @@ resource "aws_route" "NAT_internet_access" {
   destination_cidr_block = "0.0.0.0/0"
   nat_gateway_id         = aws_nat_gateway.nat.id
 }
+
+

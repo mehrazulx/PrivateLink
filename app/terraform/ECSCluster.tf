@@ -15,7 +15,7 @@ depends_on = [aws_lb_listener.ECS_NLB_Listener]
 
 network_configuration {
     subnets         = [aws_subnet.existing_private.id]
-    security_groups = [aws_security_group.app_sg.id]
+    security_groups = [aws_security_group.private_sg.id]
     assign_public_ip = false
     }
 load_balancer {

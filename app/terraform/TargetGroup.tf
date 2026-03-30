@@ -4,7 +4,7 @@ resource "aws_lb_target_group" "ECS_TG" {
 name     = "ECS-TG"
 port     = 3000
 protocol = "TCP"
-vpc_id   = aws_vpc.existing.id
+vpc_id   = aws_vpc.Private.id
 target_type ="ip" # required fpr fargate
  health_check {
     enabled             = true
