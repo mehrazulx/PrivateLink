@@ -4,8 +4,21 @@ resource "aws_security_group" "public_sg" {
   description = "Security group for ECS app"
   vpc_id      = aws_vpc.Public.id
 
+<<<<<<< HEAD
   # Inbound Rules
 
+=======
+ 
+
+    # Port 3000 rules
+  ingress {
+    from_port   = 3000
+    to_port     = 3000
+    protocol    = "tcp"
+    cidr_blocks = ["10.2.0.0/16"]
+  }
+ 
+>>>>>>> 87c1e83 (removed unnecessary ports)
 
 
   # Port 80 rules
@@ -15,6 +28,8 @@ resource "aws_security_group" "public_sg" {
     protocol    = "tcp"
     cidr_blocks = ["10.0.1.0/24"]
   }
+
+
 
  
 
